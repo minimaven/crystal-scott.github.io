@@ -33,5 +33,3 @@
 
 ## Submit a project
 1) In terminal, type => os submit
-
-$ git commit -m "completed scratchpad day 1 classwor"k 
