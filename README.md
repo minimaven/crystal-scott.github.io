@@ -30,3 +30,8 @@
 10) Enter newest Personal Access Token
 11) Select with the arrow keys the class , hit enter, then type y to confirm
 12) Select the project to install, hit enter, type y to confirm
+
+## Submit a project
+1) In terminal, type => os submit
+
+$ git commit -m "completed scratchpad day 1 classwor"k 
