@@ -28,8 +28,10 @@
 8) In terminal, type => os install
 9) Enter github username => minimaven
 10) Enter newest Personal Access Token
-11) Select with the arrow keys the class , hit enter, then type y to confirm
+11) Select with the arrow keys the class, hit enter, then type y to confirm
 12) Select the project to install, hit enter, type y to confirm
 
 ## Submit a project
 1) In terminal, type => os submit
+2) Select with the arrow keys the class, hit enter, then type y to confirm
+3) Select the project to submit, hit enter, type y to confirm
