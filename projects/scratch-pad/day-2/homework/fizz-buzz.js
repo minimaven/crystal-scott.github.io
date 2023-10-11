@@ -12,6 +12,26 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
+    
+    //Loop thru 1 - 100
+    for (var n = 1; n <= 100; n++) {
+        //use if to check to see if the number is divided by 3 and five with no remander
+        if (n % 5 === 0 && n % 3 === 0 ) {
+            //print 'fizzbuz'     
+            console.log('FizzBuzz');       
+        //use else if to check to see if the number is dived by 3 with no remander        
+        } else if (n % 3 === 0) {
+            //print 'fizz'
+            console.log('Fizz');
+        //use else if check if the number is divided by 5 with no remander        
+        } else if (n % 5 === 0) {
+            //print 'buzz' 
+            console.log('Buzz');
+        //else print the number              
+        } else {
+            console.log(n);
+        }
+    }
 
 
 
