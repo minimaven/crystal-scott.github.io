@@ -24,7 +24,25 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
-    
+    //create an empty array
+    var storage = [];
+    //create an if satement to determain which path to push the numbers
+    if (start < end) { 
+        //loop thru the numbers forwards
+        for (var n = start; n <= end; n++) {
+            //push the numbers to storage
+            storage.push(n);
+        }     
+    } else if (start > end) { 
+        //loop thru the numbers backwards
+        for (var n = start; n >= end; n--) {
+            //push the numbers to storage
+            storage.push(n);
+        }
+           
+    }
+        //return storage array
+        return storage;     
     
     
     // YOUR CODE GOES ABOVE HERE //
