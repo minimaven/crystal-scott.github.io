@@ -11,11 +11,14 @@
  * 
  * TIP: In JavaScript, how can we decipher if a value is an Array? Can typeof
  * work?
+ * 
+ * 
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    //return Array.isArray function called with the para
+    return Array.isArray(value);
     
     
     // YOUR CODE ABOVE HERE //
@@ -28,11 +31,30 @@ function isArray(value) {
  * TIP: In JavaScript, how can we decipher if a value is an Object, but not 
  * null, not an Array, not a Date - all of these will return 'object' if used 
  * with typeof.
+ * 
+ * Lookup how to figure out if something is an instance of the sate object
+ * 
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    //use if statement to Test for array
+    if (Array.isArray(value)) {
+        return false;
+    //use else if to test for null        
+    } else if (value === null) {
+        return false;
+    //use else if to test for date        
+    } else if (value instanceof Date) {
+        return false;
+    //use else if to test for object        
+    } else if (typeof value === 'object') {
+        return true;
+    // wirte else to return anything else as false
+    } else {
+        return false;
+    }
+
     
     
     // YOUR CODE ABOVE HERE //
@@ -47,7 +69,22 @@ function isObject(value) {
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    //use if statement to Test for array
+    if (Array.isArray(value)) {
+        return true;
+    //use else if to test for null        
+    } else if (value === null) {
+        return false;
+    //use else if to test for date        
+    } else if (value instanceof Date) {
+        return false;
+    //use else if to test for object        
+    } else if (typeof value === 'object') {
+        return true;
+    // wirte else to return anything else as false
+    } else {
+        return false;
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -75,8 +112,23 @@ function isCollection(value) {
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    //use if statement to Test for array
+    if (Array.isArray(value)) {
+        return 'array';
+    //use else if to test for null        
+    } else if (value === null) {
+        return 'null';
+    //use else if to test for date        
+    } else if (value instanceof Date) {
+        return 'date';
+    //use else if to test for object        
+    } else if (typeof value === 'object') {
+        return 'object';
+    // else to return anything else's type
+    } else {
+        return typeof value;
+    }    
+
     
     // YOUR CODE ABOVE HERE //
 }

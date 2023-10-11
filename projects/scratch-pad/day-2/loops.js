@@ -154,11 +154,9 @@ function printObjectValuesInReverse(object) {
     //store the values in the storage array 
     storage.push(object[key]);
   }
-  //create a new output array
-  var output = [];
   //create a for loop to reverse the order 
   for(var b = storage.length - 1; b >= 0; b--) {
-    //print the output with the loop going backwards
+    //print the storage with the loop going backwards
     console.log(storage[b]);
   }
 
