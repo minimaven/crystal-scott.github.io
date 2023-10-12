@@ -14,14 +14,28 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
-    return function(){
-
+    return function(input){
+        //test if base is > input
+        if (base < input ){
+            return true;
+        } else {
+            return false;
+        }
     }    
     
     
     
     // YOUR CODE ABOVE HERE //
+}
+
+var greaterThanFive = createGreaterThanFilter(5);
+if (greaterThanFive(8)) {
+    console.log('8 is more than 5');
+}
+
+var greaterThanTen = createGreaterThanFilter(10);
+if (greaterThanTen(69)) {
+    console.log('69 is the number of the gods');
 }
 
 /** 
@@ -31,8 +45,16 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+
+    //return a function that tests the base against the value
+    return function (value) {
+        //if statement to check to see if valuse is less than base
+        if (value < base) {
+            return true;
+        } else {
+            return false;
+        }
+    }   
     
     
     // YOUR CODE ABOVE HERE //
@@ -46,7 +68,20 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    //Change startsWith to lower case
+    var newStart = startsWith.toLowerCase();
+
+    //return a function
+    return function (str) {
+        //change str to lowercase
+        var newStr = str.toLowerCase();
+        //test if newStr starts with the same as newStart
+        if (newStr[0] === newStart[0]) {
+            return true;
+        } else {
+            return false;
+        }
+    }    
     
     
     // YOUR CODE ABOVE HERE //
@@ -60,7 +95,20 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    //change endsWith to lowercase
+    var newEnd = endsWith.toLowerCase();    
+
+    //return a function
+    return function(str) {
+        //change str to lowercase
+        var newStr = str.toLowerCase();
+        //test to see if the last letters are the same
+        if (newEnd[newEnd.length - 1] === newStr[newStr.length - 1]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -81,7 +129,7 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {       //modify is a function
     // YOUR CODE BELOW HERE //
     
-    
+
     
     
     // YOUR CODE ABOVE HERE //
