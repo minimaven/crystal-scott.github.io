@@ -121,7 +121,7 @@ function createEndsWithFilter(endsWith) {
  * TIP: You need to loop over the Strings, right? We need to pass each String to 
  * the modify Function, but we need to collect the results into some collection.
  * 
- * let uppercase = modifyStrings(['a', 'b', 'c']), function(string) {return string.toUpperCase() } ); ['A', 'B', 'C']
+ * let uppercase = modifyStrings(['a', 'b', 'c'], function(string) {return string.toUpperCase() } ); // ['A', 'B', 'C']
  * 
  */
 
@@ -129,8 +129,16 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {       //modify is a function
     // YOUR CODE BELOW HERE //
     
-
-    
+    //create a new varible to hold an empty array
+    var newStrings = [];
+    //create a loop to loop over the string
+    for (var i = 0; i <= strings.length - 1; i ++) {
+        //push the string modified by the function (given by the user) to new string
+        newStrings.push(modify(strings[i]));
+        }
+    //return the new array
+    return newStrings;
+  
     
     // YOUR CODE ABOVE HERE //
 }
@@ -144,11 +152,19 @@ function modifyStrings(strings, modify) {       //modify is a function
  * 
  * TIP: You need to loop over the Strings, right? And pass them to the test?
  */
-function allStringsPass(strings, test) {
+function allStringsPass(strings, test) {   //test is a function that will return true or false
     // YOUR CODE BELOW HERE //
-    
-    
-    
+
+    //create a loop to loop over the string
+    for (var i = 0; i <= strings.length - 1; i ++) {
+        //create and if statement to test the strings with the function called 
+        if (test(strings[i]) === false) {
+            return false;
+        } 
+    }
+    return true;
+  
+  
     
     // YOUR CODE ABOVE HERE //
 }
