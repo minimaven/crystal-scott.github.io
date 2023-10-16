@@ -14,7 +14,7 @@
 
 ## How to run git commands to save work to repo
 1) In terminal, type => git add -A
-2) In terminal, type => git commit -m "create message describing work" 
+2) In terminal, type => git commit -m "" 
 3) In terminal, type => git push
 
 ## How to install new project
