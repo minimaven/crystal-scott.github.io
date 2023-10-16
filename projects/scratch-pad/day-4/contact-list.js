@@ -15,7 +15,7 @@
  *       
  *      1. length(): returns the number of contacts within the list.
  *      2. addContact(contact): takes a contact object to be added to the 
- *         contact-list. //
+ *         contact-list. //meaning the contacts array
  *      3. findContact(fullName): takes a full-name String, like 'Max Gaudin', and 
  *         returns the contact object if found in the contacts-list, or, 
  *         undefined if the fullName does not match any contacts in the list.
@@ -35,7 +35,7 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    return {id: id, nameFirst: nameFirst, nameLast: nameLast};      //Step A
 } 
 
 
@@ -47,15 +47,40 @@ function makeContactList() {
     
     return {
         // we implemented the length api for you //
-        length: function() {        //step 1
-            return contacts.length;
+        length: function() {                        //step B1
+            return contacts.length; 
         },
-        addcontact: function(contact){      //step 2
-
+        addContact: function(contact) {             //step B2
+            contacts.push(contact);
+        },
+        findContact: function(contact) {          //step B3 -- Help
+            for (var i =0; i < contacts.length; i++) {
+                var fullName = contacts[i].nameFirst + ' ' + contacts[i].nameLast;
+                if (fullName === contact) {
+                    return  contacts[i]
+                } else {
+                    return undefined
+                }
+            }
+        },
+        removeContact: function(contact) {         //step B4 
+            for (var i =0; i < contacts.length; i++) {
+                if (contacts[i] === contact) {
+                    contacts.splice(i,1);
+                }
+            }
+        },
+        printAllContactNames: function(contact) {
+            var allContacts = [];
+            for (var i =0; i < contacts.length; i++) {
+                allContacts.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast);
+            }
+            var finalResult = allContacts.join('\n')
+            return finalResult
         }
-    } //return and object
-}
 
+    } //returns an object
+}
 
 
 
