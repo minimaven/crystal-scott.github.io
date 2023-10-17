@@ -121,9 +121,20 @@ console.log(animals.length);
 
 //I'm choosing and object because it can us the keys to match information about the friend
 
-var friends = {
-  
+var friends = [];
+
+function getRandom(array) {
+  var r = Math.floor(Math.random()*array.length);
+  return r;
 }
+
+friends.push(animals[getRandom(animals)].name);
+
+console.log(friends);
+
+animals[0].friends = friends;
+
+console.log(animals);
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
