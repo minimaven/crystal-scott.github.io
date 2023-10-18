@@ -119,12 +119,12 @@ console.log(animals.length);
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-//I'm choosing and object because it can us the keys to match information about the friend
+//I'm choosing and array
 
 var friends = [];
 
 function getRandom(array) {
-  var r = Math.floor(Math.random()*array.length);
+  var r = Math.floor(Math.random() * array.length);
   return r;
 }
 

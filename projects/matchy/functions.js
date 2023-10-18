@@ -13,24 +13,80 @@
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+function search(arr, str) {
+    var strToLower = str.toLowerCase()
+    for (var x = 0; x <= arr.length - 1; x++){
+        var nameToLower = arr[x].name.toLowerCase();
+        if (strToLower === nameToLower) {
+            return arr[x];
+        }
+    }
+    return null
+}
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+function replace(arr, str, repObj) {
+    var strToLower = str.toLowerCase()
+    for (var x = 0; x <= arr.length - 1; x++){
+        var nameToLower = arr[x].name.toLowerCase();
+        if (strToLower === nameToLower) {
+            arr.splice(x, 1, repObj);
+        }
+    }
+}
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+function remove(arr, str) {
+    var strToLower = str.toLowerCase()
+    for (var x = 0; x <= arr.length - 1; x++){
+        var nameToLower = arr[x].name.toLowerCase();
+        if (strToLower === nameToLower) {
+            arr.splice(x, 1);
+        }
+    }
+}
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function add(arr, obj) {
+    var newNameToLower = obj.name.toLowerCase()
+    //step 1
+    for (var x = 0; x <= arr.length - 1; x++){
+        var nameToLower = arr[x].name.toLowerCase();
+        if (nameToLower === newNameToLower) {
+            return
+        }
+    }
+    //step 2
+    if (
+        (obj.name.length > 0) && 
+        (obj.species.length > 0)
+    ) {
+        arr.push(obj);
+    }
+}
+
+
+
+//     for (var x = 0; x <= arr.length - 1; x++){
+//         var nameToLower = arr[x].name.toLowerCase();
+//         if (
+//             (obj.name.length > 0) && 
+//             (obj.species.length > 0) &&
+//             (nameToLower !== newNameToLower)
+//         ) {
+//             arr.push(obj);
+//         }
+//     }    
+// }
 
 
 /**
