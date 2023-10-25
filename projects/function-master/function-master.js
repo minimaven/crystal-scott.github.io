@@ -214,19 +214,32 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-    for (let x in object){
-        if ([x]key === undefined) {
-
+    //loop thru the object
+    for (let index in object){
+      //write an if statement to determine if the key is defined
+      // console.log(object[index])
+      // console.log([index])
+        if (object[index] === key) { 
+            //change the value of key to the new value
+            object[key] = value;
+        } else {    //if not write the value into the key
+          object[key] = value;
         }
-    }
+    } return object
 }
+
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    for (key in object) {
+        if (array.includes(key)) {
+          delete object[key];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -234,8 +247,14 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
-}
+    let seen = [];
+      for (let x = 0; x <= array.length - 1; x++) {
+          if (!seen.includes(array[x])) {
+              seen.push(array[x]);
+          } 
+      }
+      return seen
+  }
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
