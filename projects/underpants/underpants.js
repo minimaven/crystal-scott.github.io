@@ -3,6 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
+const { result } = require("lodash");
 const { arrayOrObject } = require("../function-master/function-master");
 
 var _ = {};
@@ -346,6 +347,23 @@ _.every = function (collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function (array, func, seed) {
+    let result;
+    //detmine if the seed value doesn't exits
+    if (seed === undefined) {
+        result = array[0]; //first item in the array to asssign the result to the first value in the arrya
+        for (let i = 1; i < array.length; i++) {
+            result = func(result, array[i], i);
+        }
+    }  else {
+        result = seed; ///result = 0
+        for (let x = 0; i < array.length; x++) {
+            result = func(result, array[x], x);
+            //result is being reassigned to the RESULT of invoking the callback function
+        }
+    }
+    return result
+}
 
 /** _.extend
 * Arguments:
