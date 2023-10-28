@@ -147,8 +147,9 @@ module.exports.contains = contains;
  * action Function to each value in the collection.
  * 
  * @param {Array or Object} collection: The collection over which to iterate.
- * @param {Function} action: The Function to be applied to each value in the 
+ * @param {Function}: The Function to be applied to each value in the 
  * collection
+ * 
  */
 function each(collection, action) {
     if(Array.isArray(collection)) {
@@ -162,5 +163,47 @@ function each(collection, action) {
     }
 }
 module.exports.each = each;
+
+
+/**
+ * unique: Returns a new array of all elements from <array> with duplicates removed
+ * 
+ * @param {Array}: an array to be iterated over
+ * @returns {Array}: a new array of all elements from <array> with duplicates removed
+ * 
+ */
+_.unique = function(arr) {
+    let seen = [];
+    for (let x = 0; x < arr.length; x++) {
+        let index = _.indexOf(seen, arr[x]);
+        if (index === -1) {
+            seen.push(arr[x]);
+        }
+    }
+    return seen
+}
+module.exports.unique = unique;
+
+
+/**
+ * filter: Returns a new array of elements containing the values that <function> returned true
+ * 
+ * @param {Array}: an array to be iterated over
+ * @param {Function}: a fucntion to define the filter with a true or false return
+ * @returns {Array}: a new array of elements for which calling <function> returned true
+ * @returns {Empty Array}: if calling <function> returned everything false or returned neither truth or false
+ * 
+ */
+_.filter = function(arr, func) {
+    let result = [];
+    for (let i = 0; i <= arr.length - 1; i++){
+        let response = func(arr[i], i , arr);
+        if (response) {
+            result.push(arr[i]);
+        } 
+    }
+    return result
+}
+module.exports.filter = filter;
 
 
