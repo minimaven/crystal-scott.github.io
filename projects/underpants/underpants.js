@@ -3,8 +3,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-const { result } = require("lodash");
-const { arrayOrObject } = require("../function-master/function-master");
+// const { functions } = require("lodash");
+// +++++++ If getting Global Error. Run a search for the code below +++++++
+// const { result } = require("lodash");
+// const { arrayOrObject } = require("../function-master/function-master");
 
 var _ = {};
 
@@ -48,7 +50,14 @@ _.identity = function(value) {
 * _.typeOf([1,2,3]) -> "array"
 */
 
-_.typeOf = function(){
+_.typeOf = function(value){
+    if (Array.isArray(value)) {
+        return 'array'
+    } else if (value === null) {
+        return 'null'
+    } else {
+        return typeof value
+    }
 
 }
 
@@ -70,6 +79,21 @@ _.typeOf = function(){
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
+_.first = function (arr, num) {
+    if (!Array.isArray(arr)) {
+        return []
+    } else if (typeof num !== 'number') {
+        return arr[0]
+    } else if (num > arr.length) {
+        return arr
+    } else {
+        let solution = [];
+        for (let x = 0; x < num ; x++) {
+            solution.push(arr[x]);
+        }
+        return solution
+    }
+}
 
 /** _.last
 * Arguments:
@@ -89,6 +113,25 @@ _.typeOf = function(){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(arr, num) {
+    let solution = [];
+    if(!Array.isArray(arr)) {
+        return solution
+    } else if (typeof num !== 'number') {
+        return arr[arr.length - 1]
+    } else if (num < 0) {
+        return solution
+    } else if(num > arr.length) {
+        return arr
+    } else {
+        let goBack = (arr.length - 1) - num
+        for (let x = arr.length - 1; x > goBack; x--) {
+          solution.unshift(arr[x]);
+          }
+          return solution
+    }
+}
+
 
 /** _.indexOf
 * Arguments:
@@ -106,6 +149,14 @@ _.typeOf = function(){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(arr, val) {
+    for (let x = 0; x < arr.length; x++) {
+        if (arr[x] === val) {
+            return x
+        } 
+    }
+    return -1
+}
 
 /** _.contains
 * Arguments:
@@ -121,6 +172,10 @@ _.typeOf = function(){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(arr, val) {
+    return arr.includes(val) ? true : false
+}
 
 
 /** _.each
@@ -139,21 +194,17 @@ _.typeOf = function(){
 *      -> should log "a" "b" "c" to the console
 */
 
-
 _.each = function(collection, func){
     //if colletion is an array
     if (Array.isArray(collection)){
         for (let i = 0; i <= collection.length - 1; i++){
             func(collection[i], i , collection);  
         }
-
     } else{    //else it's an object
         for (let key in collection) {
             func(collection[key], key, collection);
         }
     }
-
-
 }
 
 /** _.unique
@@ -165,6 +216,17 @@ _.each = function(collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+_.unique = function(arr) {
+    let seen = [];
+    for (let x = 0; x < arr.length; x++) {
+        let index = _.indexOf(seen, arr[x]);
+        if (index === -1) {
+            seen.push(arr[x]);
+        }
+    }
+    return seen
+}
 
 
 /** _.filter
@@ -183,6 +245,18 @@ _.each = function(collection, func){
 *   use _.each in your implementation
 */
 
+_.filter = function(arr, func) {
+    let result = [];
+    for (let i = 0; i <= arr.length - 1; i++){
+        let response = func(arr[i], i , arr);
+        if (response) {
+            result.push(arr[i]);
+        } 
+    }
+    return result
+}
+
+
 
 /** _.reject
 * Arguments:
@@ -197,6 +271,9 @@ _.each = function(collection, func){
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function (arr, func){
+
+}
 
 /** _.partition
 * Arguments:
