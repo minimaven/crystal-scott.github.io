@@ -272,7 +272,14 @@ _.filter = function(arr, func) {
 */
 
 _.reject = function (arr, func){
-
+    let result = [];
+    for (let i = 0; i <= arr.length - 1; i++){
+        let response = func(arr[i], i , arr);
+        if (!response) {
+            result.push(arr[i]);
+        } 
+    }
+    return result
 }
 
 /** _.partition
@@ -294,6 +301,20 @@ _.reject = function (arr, func){
 }
 */
 
+_.partition = function(arr, func) {
+    let truthy = [];
+    let falsey = [];
+    let result = [truthy, falsey];    
+    for (let i = 0; i <= arr.length - 1; i++){
+        let response = func(arr[i], i , arr);
+        if (!response) {
+            falsey.push(arr[i]);
+        } else if(response) {
+            truthy.push(arr[i]);
+        }
+    }
+    return result;
+}
 
 /** _.map
 * Arguments:
@@ -311,18 +332,42 @@ _.reject = function (arr, func){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(coll, func) {
+    let result = [];
+    if (Array.isArray(coll)){  
+        for (let i = 0; i <= coll.length - 1; i++){  
+            let value = func(coll[i], i , coll);
+            result.push(value);
+        }
+    } else {
+        for (let key in coll) {
+            let value = func(coll[key], key , coll);
+            result.push(value)
+        }
+    }
+    return result
+}
+
 
 /** _.pluck
 * Arguments:
 *   1) An array of objects
-*   2) A property
+*   2) A property  === an object key
 * Objectives:
 *   1) Return an array containing the value of <property> for every element in <array>
 *   2) You must use _.map() in your implementation.
 * Examples:
-*   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
+*   _.pluck([{a: "one", b: 'anything'},  {a: "two"}], "a") -> ["one", "two"]
+* 
+* arr[0][key], key === prop
+*
 */
 
+_.pluck = function(arr, prop) {
+    return _.map(arr, function(value, index, coll){
+        return value[prop]
+    })
+}
 
 /** _.every
 * Arguments:
@@ -348,11 +393,14 @@ _.reject = function (arr, func){
 */
 
 _.every = function (collection, func){
+    if (!collection) {
+        return false
+    }
     //determin if collection is an array
     if (Array.isArray(collection)){
         //determined if function was not provied
         if (!func) {    //this is the same as func === undefined
-            for (let i = 0; i < collectiong.length; i++) {
+            for (let i = 0; i < collection.length; i++) {
                 //determine if the current item is TRUTHY
                 if(!collection[i]) {
                     return false;
@@ -362,7 +410,8 @@ _.every = function (collection, func){
         } else {    //else it was
             for (let i = 0; i < collection.length; i++){
                 //determin if the current item passes the input functions's test
-                if (func(collection[i]) === false){   ///same as just func(collection[i])=== true
+                let funcRespo = func(collection[i], i, collection); 
+                if (!funcRespo) {   ///same as just func(collection[i])=== true
                     //if true, push item into passes array
                     return false;
                 }
@@ -370,13 +419,25 @@ _.every = function (collection, func){
         }
 
     }   else {   //else it's an object
-        //determined if function was not provied
-        if (func === undefined) {
+         //determined if function was not provied
+         if (!func) {    //this is the same as func === undefined
+            for (let key in collection) {
+                //determine if the current item is TRUTHY
+                if(!collection[key]) {
+                    return false;
+                }
+            }
 
         } else {    //else it was
-
+            for (let key in collection){
+                //determin if the current item passes the input functions's test
+                let funcRespo = func(collection[key], key, collection); 
+                if (!funcRespo){   ///same as just func(collection[i])=== true
+                    //if true, push item into passes array
+                    return false;
+                }
+            }
         }
-
     }
 
     //how do we use the passes array to know whether all the orginial items are truthy or passed the test
@@ -404,6 +465,40 @@ _.every = function (collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function (coll, func) {
+    if (Array.isArray(coll)) {
+        if (!func) {
+            for (let i = 0; i < coll.length; i++) {
+                if (coll[i]){
+                    return true
+                }
+            }
+        } else {
+            for (let i = 0; i < coll.length; i++) {
+                if (func(coll[i], i, coll)){
+                    return true
+                }
+            }
+        }
+        
+    } else {
+        if (!func) {
+            for (let key in coll) {
+                if (coll[key]) {
+                    return true
+                }
+            } 
+        } else {
+            for (let key in coll) {
+                if (func(coll[key], key, coll)) {
+                    return true
+                }
+            } 
+        }
+
+    }
+    return false
+}
 
 /** _.reduce
 * Arguments:
@@ -434,7 +529,7 @@ _.reduce = function (array, func, seed) {
         }
     }  else {
         result = seed; ///result = 0
-        for (let x = 0; i < array.length; x++) {
+        for (let x = 0; x < array.length; x++) {
             result = func(result, array[x], x);
             //result is being reassigned to the RESULT of invoking the callback function
         }
@@ -456,6 +551,18 @@ _.reduce = function (array, func, seed) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(obj1, obj2, ...moreObjs) {
+    for (let key in obj2) {
+        obj1[key] = obj2[key];
+    }
+    for (let x in moreObjs) {
+        for (let key in moreObjs[x]) {
+            obj1[key] = moreObjs[x][key];
+        }
+    }
+    return obj1
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
