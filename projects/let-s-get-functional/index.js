@@ -27,23 +27,91 @@ var _ = require('underbar');
 
 // _.filter()
 var maleCount = function(array) {
-    let males = _.filter(array, customer => customer.gender = 'male');
-    return males.length
+    let males = _.filter(array, (customer) => customer.gender === 'male');
+    return males.length;
 };
 
-var femaleCount;
+//_.reduce
+var femaleCount = function(array) {
+    let females = _.reduce(array, function(result, customer) {
+        if (customer.gender === 'female') {
+            result ++
+        } 
+        return result;
+    }, 0);
+    return females;
+};
 
-var oldestCustomer;
+var oldestCustomer = function(array) {
+    let oldest = _.reduce(array, function(result, customer) {
+        if (customer.age > result.age) {
+            result = customer;           
+        } 
+        return result;
+    });
+    return oldest.name;
+};
 
-var youngestCustomer;
+var youngestCustomer = function(array) {
+    let youngest = _.reduce(array, function(result, customer) {
+        if (customer.age < result.age) {
+            result = customer;           
+        } 
+        return result;
+    });
+    return youngest.name;
+};
 
-var averageBalance;
+var averageBalance = function (array) {
+    let strBalances = _.map(array, function(customer) {
+        return customer.balance;
+    })
+    let numBalances = _.map(strBalances, function(strBalance){
+        strBalance = strBalance.replace('$', '');
+        strBalance = strBalance.replace(',', '');
+        strBalance = parseFloat(strBalance);
+        return strBalance;
+    });
+    let avgBalance = _.reduce(numBalances, function(result, balance){
+        result += balance
+        return result
+    })
+    return avgBalance / array.length
+}; 
 
-var firstLetterCount;
+var firstLetterCount = function (array, letter) {
+    letter = letter.toUpperCase();
+    let firstLetterList = _.map(array, function(customer) {
+        return customer.name[0]
+    })
+    let letterCount = _.reduce(firstLetterList, function(result, firstLetter){
+        if (letter === firstLetter){
+            result++
+        }
+        return result
+    }, 0)
+    return letterCount
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function (array, customerName , friendLetter) {
+    friendLetter = friendLetter.toUpperCase();
+    let customerArr = _.filter(array, function (customer) {
+        if (customerName === customer.name) {
+            return true
+        }   
+    });
+    let customerObj = customerArr[0];
+    let friendCount = _.filter(customerObj.friends, function (friend) {
+        if (friend.name[0] === friendLetter) {
+            return true
+        }
+    })
+    return friendCount.length 
+};
 
-var friendsCount;
+var friendsCount = function () {
+    
+};
 
 var topThreeTags;
 
