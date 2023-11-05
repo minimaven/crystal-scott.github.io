@@ -3,10 +3,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-// const { functions } = require("lodash");
+//const { functions } = require("lodash");
 // +++++++ If getting Global Error. Run a search for the code below +++++++
 // const { result } = require("lodash");
-// const { arrayOrObject } = require("../function-master/function-master");
+//const { arrayOrObject } = require("../function-master/function-master");
 
 var _ = {};
 

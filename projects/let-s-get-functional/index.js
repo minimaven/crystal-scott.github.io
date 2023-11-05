@@ -93,7 +93,7 @@ var firstLetterCount = function (array, letter) {
     return letterCount
 };
 
-var friendFirstLetterCount = function (array, customerName , friendLetter) {
+var friendFirstLetterCount = function (array, customerName, friendLetter) {
     friendLetter = friendLetter.toUpperCase();
     let customerArr = _.filter(array, function (customer) {
         if (customerName === customer.name) {
@@ -109,13 +109,32 @@ var friendFirstLetterCount = function (array, customerName , friendLetter) {
     return friendCount.length 
 };
 
-var friendsCount = function () {
+var friendsCount = function (array, custName) {
+    let friendsName = array.reduce(function(acc, current){
+        if (custName === current.name) {
+            acc.push(current.friends.name)
+        }
+        return acc
+    }, [])
+    return friendsName;
+};
+
+var topThreeTags = function () {
     
 };
 
-var topThreeTags;
+var genderCount = function (current, acc) {
+    let genderBreakdown = current.reduce(function(acc, current){
+        if (acc.hasOwnProperty(current.gender)) {
+            acc[current.gender] += 1;
+        } else {
+            acc[current.gender] = 1;
+        }
+        return acc;
+    }, {});
+  return genderBreakdown;
+}
 
-var genderCount;
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
