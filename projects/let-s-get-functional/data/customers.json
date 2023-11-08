@@ -88,19 +88,24 @@
   "latitude": 70.637542,
   "longitude": 38.023956,
   "tags": ["laborum", "esse", "occaecat", "id", "ea", "non"],
-  "friends": [{
-    "id": 0,
-    "name": "Cheryl Kent"
-  }, {
-    "id": 1,
-    "name": "Greta Wells"
-  }, {
-    "id": 2,
-    "name": "Gutierrez Waters"
-  }, {
-    "id": 3,
-    "name": "Cooley Jimenez"
-  }],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Cheryl Kent"
+    }, 
+    {
+      "id": 1,
+      "name": "Greta Wells"
+    }, 
+    {
+      "id": 2,
+      "name": "Gutierrez Waters"
+    }, 
+    {
+      "id": 3,
+      "name": "Cooley Jimenez"
+    }
+  ],
   "greeting": "Hello, Shelly Walton! You have 3 unread messages.",
   "favoriteFruit": "banana"
 }, {

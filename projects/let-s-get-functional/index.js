@@ -110,21 +110,51 @@ var friendFirstLetterCount = function (array, customerName, friendLetter) {
 };
 
 var friendsCount = function (array, custName) {
-    let friendsName = array.reduce(function(acc, current){
-        if (custName === current.name) {
-            acc.push(current.friends.name)
-        }
-        return acc
-    }, [])
-    return friendsName;
+    let hasFriend = function(customer, customerName) {
+        return _.reduce(customer.friends, function(accumulator, currentFriend) {
+            return accumulator || currentFriend.name === customerName;
+        }, false);
+    };
+    let theFilter = function(customer) {
+        return hasFriend(customer, custName);
+    }; 
+    let getCustomerName = function(customer) {
+        return customer.name;
+    };   
+    let filteredCustomers = _.filter(array, theFilter);
+    let customerNames = _.map(filteredCustomers, getCustomerName);
+    return customerNames;
 };
 
-var topThreeTags = function () {
-    
-};
+var topThreeTags = function (custData) {
+    let allCustTagCounts = _.reduce(custData, function(acc, currentCust){
+      let currentCustTagCounts = _.reduce(currentCust.tags, function(acc, currentTag) {
+        if (acc.hasOwnProperty(currentTag)) {
+          acc[currentTag] += 1;
+        } else {
+          acc[currentTag] = 1;
+        }
+        return acc;
+      }, acc)
+    return currentCustTagCounts;
+    }, {});
+    let entries = [];
+    for (let key in allCustTagCounts) {
+      let enrty  = [];
+      enrty.push(key, allCustTagCounts[key]);
+      entries.push(enrty);
+    }
+    entries.sort(function(a,b) {
+      return b[1] - a[1];
+    });
+    let topThree = [];
+    topThree.push(entries[0][0], entries[1][0], entries[2][0])
+    return topThree  
+  };
+  
 
 var genderCount = function (current, acc) {
-    let genderBreakdown = current.reduce(function(acc, current){
+    let genderBreakdown = _.reduce(current, function(acc, current){
         if (acc.hasOwnProperty(current.gender)) {
             acc[current.gender] += 1;
         } else {
@@ -133,7 +163,8 @@ var genderCount = function (current, acc) {
         return acc;
     }, {});
   return genderBreakdown;
-}
+};
+
 
 
 //////////////////////////////////////////////////////////////////////
