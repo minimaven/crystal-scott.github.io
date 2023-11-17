@@ -116,11 +116,11 @@ console.log(-unaryMinus) // prints -11 to the console
 11-- // num equals 10
 
 //Logical NOT (converts the operand to a boolean value and returns the inverse.)
-let isTrue = true;
+var isTrue = true;
 console.log(!isTrue); //  prints false to the console
 
 // Typeof Operator (returns a string representing the type of its operand.)
-let number = 10;
+var number = 10;
 console.log(typeof number); // prints "number" to the console
 
 
@@ -131,6 +131,6 @@ to execute if the condition is true, and a statement to execute if the condition
 to return values based on conditions in a concise manner.
 */
 
-let isStudent = true;
-let currEducation = isStudent ? 'Good Luck on all your learning' : 'Time to get a job';
+var isStudent = true;
+var currEducation = isStudent ? 'Good Luck on all your learning' : 'Time to get a job';
 console.log(currEducation); // prints Good Luck on all your learning to the console
