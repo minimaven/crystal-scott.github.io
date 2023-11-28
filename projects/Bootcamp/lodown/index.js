@@ -107,8 +107,7 @@ module.exports.last = last;
  * 
  * @param {array}: an array to be iterated over
  * @param {value}: a value possibly in the <array>
- * @returns {index}: the index of <array> that is the first occurrance of <value>
- * @returns {-1}: if <array> doesn't contains <value>
+ * @returns {number}: Function returns the index of the value if it exists or -1 if it does not exist.
  * 
  *  
  */
@@ -130,8 +129,7 @@ module.exports.indexOf = indexOf;
  * 
  * @param {array}: an array to be iterated over
  * @param {value}: a value possibly in the <array>
- * @returns {true}: if <array> contains <value>
- * @returns {false}: if <array> doesn't contains <value>
+ * @returns {boolean}: Function returns true or false.
  * 
  *  
  */
@@ -190,8 +188,7 @@ module.exports.unique = unique;
  * 
  * @param {Array}: an array to be iterated over
  * @param {Function}: a function to define the filter with a true or false return
- * @returns {Array}: a new array of elements for which calling <function> returned true
- * @returns {Empty Array}: if calling <function> returned everything false or returned neither truth or false
+ * @returns {Array}: a new array of elements for which calling <function> returned true or a empty array for anything false
  * 
  */
 _.filter = function(arr, func) {
@@ -212,8 +209,7 @@ module.exports.filter = filter;
  * 
  * @param {Array}: an array to be iterated over
  * @param {Function}: a function to define the filter with a true or false return
- * @returns {Array}: a new array of elements for which calling <function> returned false
- * @returns {Empty Array}: if calling <function> returned everything true or returned neither truth or false
+ * @returns {Array}: a new array of elements for which calling <function> returned false or a empty array for anything true
  * 
  */
 _.reject = function (arr, func){
@@ -236,9 +232,7 @@ module.exports.reject = reject;
  * 
  * @param {Array}: an array to be iterated over
  * @param {Function}: a function to define the filter with a true or false return
- * @returns {Array}: a nested array
- *      @returns {Truthy Array}: array that contains all the values for which <function> returned something truthy
- *      @returns {Falsey Array}: array that contains all the values for which <function> returned something falsey
+ * @returns {Array}: a nested array of values that are truthy and values that are falsey
  * 
  */
 _.partition = function(arr, func) {
@@ -307,8 +301,7 @@ module.exports.pluck = pluck;
  * 
  * @param {Array or Object} collection: The collection over which to iterate.
  * @param {Function}: function to call on all elements of <collection>
- * @returns {True}: if the return value of calling <function> for every element is true
- * @returns {False}: if even one of the the return value of calling <function> for every element returns false
+ * @returns {Boolean}: Function returns true or false.
  * 
  */
 _.every = function (collection, func){
@@ -369,8 +362,7 @@ module.exports.every = every;
  * 
  * @param {Array or Object} collection: The collection over which to iterate.
  * @param {Function}: function to call on all elements of <collection>
- * @returns {True}: if even one of the the return value of calling <function> for every element returns true
- * @returns {False}: if the return value of calling <function> for every element is false
+ * @returns {Boolean}: Function returns true or false.
  * 
  */
 _.some = function (coll, func) {
@@ -416,7 +408,7 @@ module.exports.some = some;
  * 
  * @param {Array}: The array over which to iterate.
  * @param {Function}: function to call on all elements of <array>
- * @param {Value} Seed: an optional value provided to start the count
+ * @param { Value } Seed: An option value provided to initialize your accumulator.
  * @returns {Value}: the collected value of <array> with <seed> (if applicable)
  * 
  */

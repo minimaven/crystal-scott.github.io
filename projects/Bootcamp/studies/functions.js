@@ -80,5 +80,40 @@ function outerFunction() {
 
 outerFunction();
 
+//Variables declared within a function using var, let, or const are function-scoped. This means they are accessible only within the function in which they are declared and not accessible outside that function's scope, including the global scope.
+
+function myFunction() {
+    var varFuncScoped = 'I am a var declared function-scoped variable';
+    let letFuncScoped = 'I am a let declared function-scoped variable';
+    const constFuncScoped = 'I am a const declared function-scoped variable';
+}
+
+myFunction();
+
+console.log(varFuncScoped); // Error: functionScopedVar is not defined
+console.log(letFuncScoped); // Error: anotherFunctionScopedVar is not defined
+console.log(constFuncScoped); // Error: constFunctionScopedVar is not defined
+
+
 // 7. Closures: Functions form closures around the data they house. If an object returned from the Function and is held in memory somewhere (referenced), 
 //    that closure stays ALIVE, and data can continue to exist in these closures!  //
+
+//Function closures when an inner function has access to its outer function's variables, even after the outer function has finished executing. 
+
+function outerFunc() {
+    let outerVar = 'I am from outerFunction'; // Variable defined in outerFunction
+
+    function innerFunc() {
+        console.log(outerVar); // Accessing outerVar from the outerFunction's scope
+    }
+
+    return innerFunc; // Returning the inner function
+}
+
+let thisIsAClosure = outerFunc(); // Closure now holds a reference to innerFunction along with its closure
+
+thisIsAClosure(); // Executing the innerFunction
+//outerFunc defines outerVar within its scope.
+//innerFunc is defined within outerFunc and has access to outerVar due to closure.
+//outerFunc returns innerFunc, and it's assigned to the variable closure.
+//After outerFunc has finished executing, thisIsAClosure() still has access to outerVar due to closure, allowing innerFunc to access and log outerVar when called.

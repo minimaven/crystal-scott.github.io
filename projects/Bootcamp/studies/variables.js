@@ -43,6 +43,27 @@ const printMessage = function(message){
         console.log(message);
 };      //the container printMessage contains a function that prints a message to the console log (this is a function expression)
 
+
+//let and const variables are block-scoped, var variables are function-scoped, accessible anywhere within the function they are declared in, regardless of block boundaries.
+function blkScpEx() {
+        if (true) {
+                let letBlk = 'let in the for loop';
+                const constBlk = 'const in the for loop';
+                var varBlk = 'var in the for loop';
+                console.log(letBlk); // prints 'let in the for loop' in the console
+                console.log(constBlk); // prints 'const in the for loop' in the console
+                console.log(varBlk); // prints 'var in the for loop' in the console
+        }
+
+        // letBlk and constBlk are not accessible here.
+        console.log(varBlk); // prints 'var in the for loop' in the console
+        console.log(letBlk); // returns ReferenceError: letVar is not defined
+        console.log(constBlk); // returns ReferenceError: constBlk is not defined
+}
+
+blkScpEx();
+
+
 // 3. Hoisting //
 /* 
 Hoisting is when variables and function declerations are moved to the top of their containing scope. Only the declerations are hoisted, not the initializations.
